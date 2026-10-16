@@ -7,10 +7,25 @@ from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 
 load_dotenv()
-MONGO_URI = os.getenv("MONGO_URI")
+
+MONGO_URI = None
+try:
+    import streamlit as st
+    if hasattr(st, "secrets"):
+        MONGO_URI = st.secrets.get("MONGO_URI") or st.secrets.get("MONGO_URL")
+except Exception:
+    MONGO_URI = None
 
 if not MONGO_URI:
-    raise ValueError("MONGO_URI is not avalible in .env file")
+    MONGO_URI = os.getenv("MONGO_URI") or os.getenv("MONGO_URL")
+
+if MONGO_URI:
+    MONGO_URI = str(MONGO_URI).strip().strip("'\"")
+
+if not MONGO_URI:
+    raise ValueError(
+        "MONGO_URI is not configured. Add it to Streamlit Secrets (App Settings -> Secrets) or the .env file."
+    )
 
 client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
 
