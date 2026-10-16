@@ -69,9 +69,9 @@ This project demonstrates document-oriented database design, Python–MongoDB in
 
 Database credentials are stored in environment variables and must not be committed to version control.
 
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
+![Job Application Tracker dashboard](screenshots/image.png)
+![Application form](screenshots/image-1.png)
+![Application list](screenshots/image-2.png)
+![Application editing view](screenshots/image-3.png)
+![Application analytics](screenshots/image-4.png)
+![Delete applications view](screenshots/image-5.png)
